@@ -1,0 +1,10 @@
+Makefile
+configure
+.*.swp
+*~
+autom4te.cache
+gendef/Makefile.in
+genidl/Makefile.in
+widl/Makefile.in
+missing
+depcomp

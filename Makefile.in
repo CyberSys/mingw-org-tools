@@ -1,0 +1,7 @@
+SUBDIRS = gendef genidl widl
+subdirs: $(SUBDIRS)
+$(SUBDIRS):
+	@test -n "$(DO)" && g="$(DO)" || g=all; echo "Making \`$$g' in \`$@'"
+	@cd $0; $(MAKE) $(DO)
+all: subdirs
+.PHONY: $(SUBDIRS)
