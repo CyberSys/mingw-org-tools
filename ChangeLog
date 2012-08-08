@@ -1,6 +1,7 @@
 2012-08-08  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* ChangeLog: New file.
+	* README: Ditto.
 	* .gitignore: Ditto.
 	* .gitmodules: Ditto.
 	* Makefile.am: Ditto.
