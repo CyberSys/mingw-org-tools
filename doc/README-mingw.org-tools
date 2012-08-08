@@ -1,0 +1,18 @@
+The gendef, genidl and widl packages are imported from the mingw-w64 project SVN
+source repository.  The packages have been restructured such that only one
+configure script, config.h and Makefile are needed to build the packages in
+order to reduce the amount of time required to build the set of programs.  I
+chose to use Automake because for one the three source sets used it and it was
+therefore easy enough to copy what was needed from the three Makefile.am files
+to one Makefile.am file.  I used the information from the three configure.ac
+file to create one configure.ac file.  I chose to make the sources gnu99
+compliant and added a -Werror switch to all three sources.  This forced a few
+changes in the source but nothing drastic.  The most drastic was removing some
+unused local variables that were set but not used and removing some return with
+value in functions declared as a void return.  I also modified the generated
+file preambles to be more mingw.org conventional.
+
+The doc/gendef, doc/genidl and doc/widl directories contain the license for each
+of those packages and were moved from their respective package.  I also moved
+the original ChangeLog* files from their respective package to these doc
+directories.

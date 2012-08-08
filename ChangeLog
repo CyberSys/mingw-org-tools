@@ -37,3 +37,5 @@
 	* widl/src: Removed.
 	* build-aux: Add submodule.
 	* gendef/gendef.c: Reformat the output of the generated file preamble.
+	* genidl/genidl_dumpidl.c: Ditto.
+	* doc/README-mingw.org-tools: New file.
