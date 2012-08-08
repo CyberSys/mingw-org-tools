@@ -1291,7 +1291,7 @@ static int string_start(void)
 static void push_buffer(pp_entry_t *ppp, char *filename, char *incname, int pop)
 {
 	if(ppy_debug)
-		printf("push_buffer(%d): %p %p %p %d\n", bufferstackidx, ppp, filename, incname, pop);
+		printf("push_buffer(%d): %p %p %p %d\n", bufferstackidx, (void *)ppp, (void *)filename, (void *)incname, pop);
 	if(bufferstackidx >= MAXBUFFERSTACK)
 		pp_internal_error(__FILE__, __LINE__, "Buffer stack overflow");
 
@@ -1379,12 +1379,12 @@ static bufferstackentry_t *pop_buffer(void)
 	if(ppy_debug)
 		printf("pop_buffer(%d): %p %p (%d, %d, %d) %p %d\n",
 			bufferstackidx,
-			bufferstack[bufferstackidx].bufferstate,
-			bufferstack[bufferstackidx].define,
+			(void *)bufferstack[bufferstackidx].bufferstate,
+			(void *)bufferstack[bufferstackidx].define,
 			bufferstack[bufferstackidx].line_number,
 			bufferstack[bufferstackidx].char_number,
 			bufferstack[bufferstackidx].if_depth,
-			bufferstack[bufferstackidx].filename,
+			(void *)bufferstack[bufferstackidx].filename,
 			bufferstack[bufferstackidx].should_pop);
 
 	pp_status.file = bufferstack[bufferstackidx].filehandle;

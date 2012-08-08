@@ -137,7 +137,7 @@ unsigned short get_type_vt(type_t *t)
 {
   unsigned short vt;
 
-  chat("get_type_vt: %p type->name %s\n", t, t->name);
+  chat("get_type_vt: %p type->name %s\n", (void *)t, t->name);
   if (t->name) {
     vt = builtin_vt(t);
     if (vt) return vt;

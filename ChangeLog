@@ -1,0 +1,37 @@
+2012-08-08  Earnie Boyd  <earnie@users.sourceforge.net>
+
+	* ChangeLog: New file.
+	* .gitignore: Ditto.
+	* .gitmodules: Ditto.
+	* Makefile.am: Ditto.
+	* config.h.in: Ditto.
+	* configure.ac: Ditto.
+	* doc/gendef/COPYING: Moved from the gendef/ directory.
+	* doc/gendef/ChangeLog*: Ditto.
+	* gendef/Makefile.am: Removed.
+	* gendef/aclocal.m4: Ditto.
+	* gendef/config.h.in: Ditto.
+	* gendef/configure.ac: Ditto.
+	* gendef/src/*: Moved to gendef/.
+	* gendef/src: Removed.
+	* doc/genidl/COPYING: Moved from the genidl/ directory.
+	* doc/genidl/ChangeLog*: Ditto.
+	* genidl/Makefile.am: Removed.
+	* genidl/aclocal.m4: Ditto.
+	* genidl/config.h.in: Ditto.
+	* genidl/configure.ac: Ditto.
+	* genidl/src/*: Moved to genidl/.
+	* genidl/src: Removed.
+	* doc/widl/COPYING: New file - version based on source preamble.
+	* widl/Makefile.am: Removed.
+	* widl/aclocal.m4: Ditto.
+	* widl/configure.ac: Ditto.
+	* widl/include/config.h.in: Ditto.
+	* widl/include/winbase.h: Ditto.
+	* widl/include/windef.h: Ditto.
+	* widl/indlude/winerror.h: Ditto.
+	* widl/include/winnls.h: Ditto.
+	* widl/include/winnt.h: Ditto.
+	* widl/src/*: Moved to widl/.
+	* widl/src: Removed.
+	* build-aux: Add submodule.

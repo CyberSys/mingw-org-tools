@@ -38,9 +38,9 @@
 #define ENABLE_DEBUG 0
 
 #if ENABLE_DEBUG == 1
-#define PRDEBUG(ARG...)  fprintf(stderr,ARG)
+#define PRDEBUG(...)  fprintf(stderr, __VA_ARGS__)
 #else
-#define PRDEBUG(ARG...) do { } while(0)
+#define PRDEBUG(...)
 #endif
 
 static void decode_mangle (FILE *fp, const char *n);

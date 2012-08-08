@@ -76,7 +76,7 @@ typedef struct tagMSFT_ImpFile {
     int guid;
     LCID lcid;
     int version;
-    char filename[0]; /* preceded by two bytes of encoded (length << 2) + flags in the low two bits. */
+    char filename[]; /* preceded by two bytes of encoded (length << 2) + flags in the low two bits. */
 } MSFT_ImpFile;
 
 typedef struct _msft_typelib_t
@@ -777,7 +777,7 @@ static int encode_type(
     int target_type;
     int child_size = 0;
 
-    chat("encode_type vt %d type %p\n", vt, type);
+    chat("encode_type vt %d type %p\n", vt, (void *)type);
 
     default_type = 0x80000000 | (vt << 16) | vt;
     if (!width) width = &scratch;
@@ -981,7 +981,7 @@ static int encode_type(
         while (type->typelib_idx < 0 && type_is_alias(type) && !is_attr(type->attrs, ATTR_PUBLIC))
           type = type_alias_get_aliasee(type);
 
-        chat("encode_type: VT_USERDEFINED - type %p name = %s real type %d idx %d\n", type,
+        chat("encode_type: VT_USERDEFINED - type %p name = %s real type %d idx %d\n", (void *)type,
              type->name, type_get_type(type), type->typelib_idx);
 
         if(type->typelib_idx == -1) {
@@ -1038,7 +1038,7 @@ static int encode_type(
 
 static void dump_type(type_t *t)
 {
-    chat("dump_type: %p name %s type %d attrs %p\n", t, t->name, type_get_type(t), t->attrs);
+    chat("dump_type: %p name %s type %d attrs %p\n", (void *)t, t->name, type_get_type(t), (void *)t->attrs);
 }
 
 static int encode_var(
@@ -1063,7 +1063,7 @@ static int encode_var(
     *decoded_size = 0;
 
     chat("encode_var: var %p type %p type->name %s\n",
-         var, type, type->name ? type->name : "NULL");
+         (void *)var, (void *)type, type->name ? type->name : "NULL");
 
     if (is_array(type) && !type_array_is_decl_as_ptr(type)) {
         int num_dims, elements = 1, arrayoffset;
@@ -1275,7 +1275,7 @@ static HRESULT add_func_desc(msft_typeinfo_t* typeinfo, var_t *func, int index)
     int entry = -1, entry_is_ord = 0;
     int lcid_retval_count = 0;
 
-    chat("add_func_desc(%p,%d)\n", typeinfo, index);
+    chat("add_func_desc(%p,%d)\n", (void *)typeinfo, index);
 
     id = ((0x6000 | (typeinfo->typeinfo->datatype2 & 0xffff)) << 16) | index;
 
@@ -2027,7 +2027,10 @@ static void add_interface_typeinfo(msft_typelib_t *typelib, type_t *interface)
     }
 
     if (is_attr(interface->attrs, ATTR_DISPINTERFACE))
-        return add_dispinterface_typeinfo(typelib, interface);
+    {
+        add_dispinterface_typeinfo(typelib, interface);
+	return;
+    }
 
     /* midl adds the parent interface first, unless the parent itself
        has no parent (i.e. it stops before IUnknown). */
@@ -2496,7 +2499,7 @@ static void save_all_changes(msft_typelib_t *typelib)
 {
     int filepos;
 
-    chat("save_all_changes(%p)\n", typelib);
+    chat("save_all_changes(%p)\n", (void *)typelib);
 
     filepos = sizeof(MSFT_Header) + sizeof(MSFT_SegDir);
     if(typelib->typelib_header.varflags & 0x100) filepos += 4; /* helpstringdll */

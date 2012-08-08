@@ -234,12 +234,11 @@ fill_typb (sTI2TypLib *tl, sTI2TypeBase *tb, size_t off, unsigned char *dsrc, un
       {
 	sMSFT_FuncParam *params;
 	sMSFT_func *func;
-	uint32_t oVars = 0, *pData, *pCustomData = NULL;
+	uint32_t oVars = 0, *pCustomData = NULL;
 
 	func = (sMSFT_func *) &b->dta[offs];
 	oVars = func->rlen - (func->nrArgs * 12);
 	params = (sMSFT_FuncParam *) &b->dta[offs + oVars];
-	pData = func->data;
 	pCustomData = NULL;
 	if (func->f.hasParamDefValue)
 	  pCustomData = (uint32_t *) &b->dta[offs + oVars-func->nrArgs*4];
@@ -830,7 +829,7 @@ TI2_typlib_dispinterface (FILE *fp, sTI2TypLib *tl, const char *prefix)
 }
 
 static void
-TI2_typlib_coclass_hdr (FILE *fp, sTI2TypLib *tl, const char *prefix, int tkind)
+TI2_typlib_coclass_hdr (FILE *fp, sTI2TypLib *tl, const char *prefix, unsigned int tkind)
 {
   size_t i;
   int befirst;

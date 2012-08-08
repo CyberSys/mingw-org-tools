@@ -2343,7 +2343,7 @@ static void write_array_element_type(FILE *file, const type_t *type,
             return;
         }
     }
-    return write_member_type(file, type, cont_is_complex, NULL, elem, NULL, tfsoff);
+    write_member_type(file, type, cont_is_complex, NULL, elem, NULL, tfsoff);
 }
 
 static void write_end(FILE *file, unsigned int *tfsoff)
@@ -3246,7 +3246,7 @@ static unsigned int write_union_tfs(FILE *file, const attr_list_t *attrs,
     var_list_t *fields;
     unsigned int nbranch = 0;
     type_t *deftype = NULL;
-    short nodeftype = 0xffff;
+    short nodeftype = 0xff;
     var_t *f;
 
     if (processed(type) &&
