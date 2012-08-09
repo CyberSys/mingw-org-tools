@@ -1,3 +1,12 @@
+2012-08-09  Earnie Boyd  <earnie@users.sourceforge.net>
+
+	* gendef/gendef.c: Add -m --no-c++-methods option.
+	Make the output handle _O_BINARY.
+	Update "Report bugs to" email address.
+	Add text to the output file preamble.
+	Remove "Function doesn't return." text from "Couldn't determine function
+	argument count."
+
 2012-08-08  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* ChangeLog: New file.
