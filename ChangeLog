@@ -1,3 +1,24 @@
+2012-08-23  Earnie Boyd  <earnie@users.sourceforge.net>
+
+	* Makefile.am: Add libmangle.a target and use by gendef.
+	* config.h.in: Add definition for HAVE_LIBMANGLE.
+	* configure.ac: Add AC_PROG_RANLIB.
+	* doc/libmangle/COPYING: New file.
+	* doc/libmangle/ChangeLog-2009: Ditto.
+	* doc/libmangle/ChangeLog.2010: Ditto.
+	* doc/libmangle/ChangeLog.2011: Ditto.
+	* libmangle/api/Doxyfile: Ditto.
+	* libmangle/api/html/*: Generated Doxygen html documentation files.
+	* libmangle/include/libmangle.h: New file.
+	* libmangle/src/m_ms.c: Ditto.
+	* libmangle/src/m_ms.h: Ditto.
+	* libmangle/src/m_token.c: Ditto.
+	* libmangle/src/m_token.h: Ditto.
+	* libmangle/src/mainpage.h: Ditto.
+	* gendef/gendef.c (dump_def): Add verbiage to the generated file
+	preamble to based on the use of -m option.
+	Don't output the demangled name if -m option is requested.
+
 2012-08-09  Earnie Boyd  <earnie@users.sourceforge.net>
 
 	* gendef/gendef.c: Add -m --no-c++-methods option.

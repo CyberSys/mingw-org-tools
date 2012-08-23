@@ -662,12 +662,24 @@ dump_def (void)
     "; This file is a part of the MinGW.org WSL.\n"
     "; See the file LICENSE for your rights of use.\n"
     "; http://mingw.git.sourceforge.net/git/gitweb.cgi?p=mingw/mingw.org-wsl;a=blob_plain;f=LICENSE\n"
-    ";\n"
-    "; Note: All exports, except for those that appear t be C++ mangled names\n"
-    ";       are included.  Not all exports have prototypes in a header file\n"
-    ";       and not all exports are functions.\n"
     ";\n",
     fndllname);
+  if (c___output)
+    {
+      fprintf (fp,
+	"; Note: All exports including those that appear to be C++ mangled\n"
+	";       names are included.  Not all exports have prototypes in a\n"
+	";       header file and not all exports are functions.\n"
+	";\n");
+    }
+  else
+    {
+      fprintf (fp,
+	"; Note: All exports except for those that appear to be C++ mangled\n"
+	";       names are included.  Not all exports have prototypes in a\n"
+	";       header file and not all exports are functions.\n"
+	";\n");
+    }
   fprintf (fp,"LIBRARY \"%s\"\nEXPORTS\n",fndllname);
   while ((exp = gExp) != NULL)
     {
@@ -675,7 +687,7 @@ dump_def (void)
       int seen_ret;
       seen_ret = 1;
       gExp = exp->next;
-      if (exp->name[0] == '?')
+      if (exp->name[0] == '?' && c___output)
         {
           decode_mangle (fp, exp->name);
         }

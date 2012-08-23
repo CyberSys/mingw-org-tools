@@ -1,4 +1,5 @@
 bin_PROGRAMS = gendef genidl widl
+lib_LIBRARIES = libmangle.a
 gendef_SOURCES = \
   gendef/fsredir.c \
   gendef/fsredir.h \
@@ -8,7 +9,10 @@ gendef_SOURCES = \
   gendef/gendef.h \
   gendef/gendef_def.c
 
-gendef_CFLAGS = $(AM_CFLAGS) -O3 -g -std=gnu99 -Werror -Wall -Wextra -pedantic  -Wno-pedantic-ms-format
+gendef_CFLAGS = $(AM_CFLAGS) -O3 -g -std=gnu99 -Werror -Wall -Wextra -pedantic  -Wno-pedantic-ms-format -I$(top_srcdir)/libmangle/include
+
+gendef_LDADD = -L. -lmangle
+gendef_DEPENDENCIES = libmangle.a
 
 genidl_SOURCES = \
   genidl/fsredir.c \
@@ -49,3 +53,9 @@ widl_SOURCES = \
   widl/wpp/wpp.c
 
 widl_CFLAGS = $(AM_CFLAGS) -I$(top_srcdir)/widl/include -O3 -g -std=gnu99 -Werror -Wall -Wformat -pedantic  -Wno-pedantic-ms-format
+
+libmangle_a_SOURCES = \
+  libmangle/src/m_ms.h libmangle/src/m_token.h \
+  libmangle/src/m_ms.c libmangle/src/m_token.c
+
+include_HEADERS = libmangle/include/libmangle.h
